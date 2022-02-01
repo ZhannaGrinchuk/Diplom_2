@@ -42,7 +42,7 @@ public class ListOfOrdersTest {
         boolean ListOfOrders = getList.extract().path("success");
 
         assertThat("Status code is incorrect", statusCode, equalTo(200));
-        assertTrue(ListOfOrders);
+        assertTrue("List of orders is not received", ListOfOrders);
 
     }
 
@@ -57,7 +57,7 @@ public class ListOfOrdersTest {
     boolean ListOfOrders = response.extract().path("success");
 
     assertThat("Status code is incorrect", statusCode, equalTo(401));
-    assertFalse(ListOfOrders);
+    assertFalse("List of orders is not received", ListOfOrders);
 
     }
 }

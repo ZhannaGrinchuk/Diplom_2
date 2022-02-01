@@ -28,7 +28,7 @@ public class LoginUserTest {
 
     @Test
     @Description("Логин под существующим пользователем")
-    public void checkCourierLogin() {
+    public void checkUserLogin() {
 
         user = User.getRandom();
         userClient.create(user);

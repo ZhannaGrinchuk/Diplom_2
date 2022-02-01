@@ -1,5 +1,6 @@
 package com.example;
 
+import io.qameta.allure.Step;
 import io.restassured.response.ValidatableResponse;
 
 import static io.restassured.RestAssured.given;
@@ -8,7 +9,7 @@ public class UserClient extends RestAssuredClient {
 
     private static final String USER_PATH = "api/";
 
-    //создание пользователя
+    @Step("Создание пользователя")
     public ValidatableResponse create(User user) {
         return given()
                 .spec(getBaseSpec())
@@ -20,7 +21,7 @@ public class UserClient extends RestAssuredClient {
                 .log().body();
     }
 
-    //авторизация пользователя
+    @Step("Авторизация пользователя")
     public ValidatableResponse login(UserCredentials credentials) {
         return given()
                 .spec(getBaseSpec())
@@ -32,7 +33,7 @@ public class UserClient extends RestAssuredClient {
                 .log().body();
     }
 
-    //получение данных о пользователе
+    @Step("Получение данных о пользователе")
     public ValidatableResponse getUserInfo(String accessToken) {
         return given()
                 .spec(getBaseSpec())
@@ -45,7 +46,7 @@ public class UserClient extends RestAssuredClient {
 
     }
 
-    //изменение данных пользователя
+    @Step("Изменение данных пользователя")
     public ValidatableResponse changeUserData(String accessToken, User user) {
         return given()
                 .spec(getBaseSpec())

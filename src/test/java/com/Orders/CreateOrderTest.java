@@ -3,11 +3,15 @@ package com.Orders;
 import com.example.*;
 import io.restassured.response.ValidatableResponse;
 import io.qameta.allure.Description;
+import org.hamcrest.CoreMatchers;
 import org.junit.Before;
 import org.junit.Test;
+
+import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.equalTo;
 import static org.junit.Assert.*;
+
 
 
 public class CreateOrderTest {
@@ -40,10 +44,12 @@ public class CreateOrderTest {
        ValidatableResponse createOrder = orderClient.createOrder(accessToken, ingredients);
 
         int statusCode = createOrder.extract().statusCode();
-        boolean ListOfOrders = createOrder.extract().path("success");
+        boolean isOrderCreated = createOrder.extract().path("success");
+        int orderNumber = createOrder.extract().path("order.number");
 
         assertThat("Status code is incorrect", statusCode, equalTo(200));
-        assertTrue(ListOfOrders);
+        assertTrue("Order is not created", isOrderCreated);
+        assertThat("Order number is missing", orderNumber, is(CoreMatchers.not(0)));
 
     }
 
@@ -56,10 +62,12 @@ public class CreateOrderTest {
         ValidatableResponse createOrder = orderClient.createOrder("", ingredients);
 
         int statusCode = createOrder.extract().statusCode();
-        boolean ListOfOrders = createOrder.extract().path("success");
+        boolean isOrderCreated = createOrder.extract().path("success");
+        int orderNumber = createOrder.extract().path("order.number");
 
         assertThat("Status code is incorrect", statusCode, equalTo(200));
-        assertTrue(ListOfOrders);
+        assertTrue("Order is not created", isOrderCreated);
+        assertThat("Order number is missing", orderNumber, is(CoreMatchers.not(0)));
 
     }
 
@@ -77,10 +85,12 @@ public class CreateOrderTest {
         ValidatableResponse createOrder = orderClient.createOrder(accessToken, ingredients);
 
         int statusCode = createOrder.extract().statusCode();
-        boolean ListOfOrders = createOrder.extract().path("success");
+        boolean isOrderCreated = createOrder.extract().path("success");
+        int orderNumber = createOrder.extract().path("order.number");
 
         assertThat("Status code is incorrect", statusCode, equalTo(200));
-        assertTrue(ListOfOrders);
+        assertTrue("Order is not created", isOrderCreated);
+        assertThat("Order number is missing", orderNumber, is(CoreMatchers.not(0)));
 
     }
 
@@ -98,10 +108,10 @@ public class CreateOrderTest {
         ValidatableResponse createOrder = orderClient.createOrder(accessToken, ingredients);
 
         int statusCode = createOrder.extract().statusCode();
-        boolean ListOfOrders = createOrder.extract().path("success");
+        boolean isOrderCreated = createOrder.extract().path("success");
 
         assertThat("Status code is incorrect", statusCode, equalTo(400));
-        assertFalse(ListOfOrders);
+        assertFalse("Order is created", isOrderCreated);
     }
 
     @Description("Создание заказа с неверным хэшем ингредиентов")

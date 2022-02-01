@@ -36,10 +36,10 @@ public class ChangeUserDataTest {
         ValidatableResponse changeUserData = userClient.changeUserData(accessToken, User.getWithRandomEmail());
 
         int statusCode = changeUserData.extract().statusCode();
-        boolean isUserDataChanging = changeUserData.extract().path("success");
+        boolean isUserDataChanged = changeUserData.extract().path("success");
 
         assertThat("Status code is incorrect", statusCode, equalTo(200));
-        assertTrue("User data is incorrect", isUserDataChanging);
+        assertTrue("User data has not been changed", isUserDataChanged);
     }
 
 
@@ -55,10 +55,10 @@ public class ChangeUserDataTest {
         ValidatableResponse changeUserData = userClient.changeUserData(accessToken, User.getWithRandomPassword());
 
         int statusCode = changeUserData.extract().statusCode();
-        boolean isChangingUserData = changeUserData.extract().path("success");
+        boolean isUserDataChanged = changeUserData.extract().path("success");
 
         assertThat("Status code is incorrect", statusCode, equalTo(200));
-        assertTrue("User data is incorrect", isChangingUserData);
+        assertTrue("User data has not been changed", isUserDataChanged);
     }
 
 
@@ -74,10 +74,10 @@ public class ChangeUserDataTest {
         ValidatableResponse changeUserData = userClient.changeUserData(accessToken, User.getWithRandomName());
 
         int statusCode = changeUserData.extract().statusCode();
-        boolean isChangingUserData = changeUserData.extract().path("success");
+        boolean isUserDataChanged = changeUserData.extract().path("success");
 
         assertThat("Status code is incorrect", statusCode, equalTo(200));
-        assertTrue("User data is incorrect", isChangingUserData);
+        assertTrue("User data has not been changed", isUserDataChanged);
     }
 
 
@@ -91,10 +91,10 @@ public class ChangeUserDataTest {
         ValidatableResponse changeUserData = userClient.changeUserData(accessToken, User.getWithRandomEmail());
 
         int statusCode = changeUserData.extract().statusCode();
-        boolean isUserDataChanging = changeUserData.extract().path("success");
+        boolean isUserDataChanged = changeUserData.extract().path("success");
 
         assertThat("Status code is incorrect", statusCode, equalTo(200));
-        assertTrue("User data is incorrect", isUserDataChanging);
+        assertTrue("User data has not been changed", isUserDataChanged);
     }
 
 
@@ -108,10 +108,10 @@ public class ChangeUserDataTest {
         ValidatableResponse changeUserData = userClient.changeUserData(accessToken, User.getWithRandomPassword());
 
         int statusCode = changeUserData.extract().statusCode();
-        boolean isChangingUserData = changeUserData.extract().path("success");
+        boolean isUserDataChanged = changeUserData.extract().path("success");
 
         assertThat("Status code is incorrect", statusCode, equalTo(200));
-        assertTrue("User data is incorrect", isChangingUserData);
+        assertTrue("User data has not been changed", isUserDataChanged);
     }
 
 
@@ -125,10 +125,10 @@ public class ChangeUserDataTest {
         ValidatableResponse changeUserData = userClient.changeUserData(accessToken, User.getWithRandomName());
 
         int statusCode = changeUserData.extract().statusCode();
-        boolean isChangingUserData = changeUserData.extract().path("success");
+        boolean isUserDataChanged = changeUserData.extract().path("success");
 
         assertThat("Status code is incorrect", statusCode, equalTo(200));
-        assertTrue("User data is incorrect", isChangingUserData);
+        assertTrue("User data has not been changed", isUserDataChanged);
     }
 
 
@@ -142,10 +142,10 @@ public class ChangeUserDataTest {
         ValidatableResponse changeUserData = userClient.changeUserData("", User.getWithRandomName());
 
         int statusCode = changeUserData.extract().statusCode();
-        boolean isChangingUserData = changeUserData.extract().path("success");
+        boolean isUserDataChanged = changeUserData.extract().path("success");
 
         assertThat("Status code is incorrect", statusCode, equalTo(401));
-        assertFalse(isChangingUserData);
+        assertFalse("User data has been changed", isUserDataChanged);
     }
 
 }

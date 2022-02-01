@@ -35,7 +35,7 @@ public class CreateUserTest {
         String accessToken = response.extract().path("accessToken");
 
         assertThat("Status code is incorrect", statusCode, equalTo(200));
-        assertThat(accessToken, is(not(0)));
+        assertThat("Access token is null", accessToken, is(not(0)));
 
     }
 
@@ -53,7 +53,7 @@ public class CreateUserTest {
         boolean isUserCreated = createAgain.extract().path("success");
 
         assertThat("Status code is incorrect", statusCode, equalTo(403));
-        assertFalse(isUserCreated);
+        assertFalse("User is created", isUserCreated);
 
     }
 
@@ -70,7 +70,7 @@ public class CreateUserTest {
         boolean isUserCreated = response.extract().path("success");
 
         assertThat("Status code is incorrect", statusCode, equalTo(403));
-        assertFalse(isUserCreated);
+        assertFalse("User is created", isUserCreated);
 
     }
 
@@ -87,7 +87,7 @@ public class CreateUserTest {
         boolean isUserCreated = response.extract().path("success");
 
         assertThat("Status code is incorrect", statusCode, equalTo(403));
-        assertFalse(isUserCreated);
+        assertFalse("User is created", isUserCreated);
 
     }
 
@@ -104,7 +104,7 @@ public class CreateUserTest {
         boolean isUserCreated = response.extract().path("success");
 
         assertThat("Status code is incorrect", statusCode, equalTo(403));
-        assertFalse(isUserCreated);
+        assertFalse("User is created", isUserCreated);
 
     }
 
